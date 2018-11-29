@@ -68,11 +68,11 @@ namespace TaxiFareCalculator.BusinessLogic
 
         private bool IsPeakWeekday(TaxiRide ride) {
             bool result;
-            result = ((ride.StartTimeMinutes >= 960) && (ride.StartTimeMinutes <= 1200) && (ride.RideDate.IsWeekday()));
+            result = ((ride.StartTimeMinutes >= 960d) && (ride.StartTimeMinutes <= 1200d) && (ride.RideDate.IsWeekday()));
             return result;
         }
         private bool IsNight(TaxiRide ride) {
-            return ((ride.StartTimeMinutes >= 1200) || (ride.StartTimeMinutes <= 480)) ? true : false;
+            return ((ride.StartTimeMinutes >= 1200d) || (ride.StartTimeMinutes <= 360d)) ? true : false;
         }
         private bool IsWeekday(TaxiRide ride) {
             return ((ride.StartTime.Day == (int)DayOfWeek.Saturday) || (ride.StartTime.Day == (int)DayOfWeek.Sunday));

@@ -8,7 +8,7 @@ namespace TaxiFareCalculator.Models
         public double MilesBelowSixMph { get; set; }
         public DateTime StartTime { get; set; }
         public DateTime RideDate { get; set; }
-        public int StartTimeMinutes { get { return StartTime.Hour * 60 + StartTime.Minute; } }
+        public double StartTimeMinutes { get { return StartTime.Hour * 60 + StartTime.Minute + ((double)StartTime.Second / 60d); } }
         public double FarePrice { get; set; }
     }
 }

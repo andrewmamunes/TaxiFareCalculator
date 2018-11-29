@@ -27,7 +27,7 @@
         </div>
         <div class="form-group">
             <label>Miles below 6 MPH</label><br />
-            <input type="number" name="milesBelowSixMph" ng-model="ride.milesBelowSixMph" tf-non-negative ng-required="true" min="0" />
+            <input type="number" name="milesBelowSixMph" ng-model="ride.milesBelowSixMph" tf-non-negative ng-required="true" />
             <div ng-messages="rideForm.milesBelowSixMph.$error" style="color:red" role="alert">
                 <div ng-message="required">Miles below six mph is required</div>
                 <div ng-message="nonnegative"> Miles below six mph must be non-negative</div>
@@ -36,7 +36,7 @@
         </div>
         <div class="form-group">
             <label>Minutes above 6 MPH</label><br />
-            <input type="number" name="minutesAboveSixMph" ng-model="ride.minutesAboveSixMph" tf-non-negative ng-required="true" min="0"/>
+            <input type="number" name="minutesAboveSixMph" ng-model="ride.minutesAboveSixMph" tf-non-negative ng-required="true" />
             <div ng-messages="rideForm.minutesAboveSixMph.$error" style="color:red" role="alert">
                 <div ng-message="required"> Minutes above six mph is required.</div>
                 <div ng-message="nonnegative"> Minutes above six mph must be non-negative </div>

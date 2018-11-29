@@ -15,10 +15,9 @@
             rideService.calculateFare($scope.ride)
                 // resolve promise
                 .then(function (response) {
-                    $scope.errorMessage = null;
                     $scope.ride.farePrice = formatter.format(response.data);
                 }, function (error) {
-                    $scope.errorMessage = error.data;
+                    alert(error.data);
                 })
         } else {
             $scope.errorMessage = 'The ride that you submitted is invalid.';

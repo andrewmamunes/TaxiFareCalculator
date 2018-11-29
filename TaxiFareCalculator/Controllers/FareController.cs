@@ -19,15 +19,28 @@ namespace TaxiFareCalculator.Controllers
                 IFareCalculator calculator = new FareCalculator();
                 return Json(calculator.CalculateFare(fare));
             }
+            #region Exception Handling
             catch (ArgumentException ex)
             {
-                return Json(ex.Message);
+                HttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                return Json(ex.Message.ToString());
             }
-            catch (Exception ex)
+            catch (NullReferenceException ex)
             {
                 HttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
-                return Json(ex.Message);
+                return Json(ex.Message.ToString());
             }
+            catch (OverflowException ex)
+            {
+                HttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                return Json(ex.Message.ToString());
+            }
+            catch (Exception)
+            {
+                HttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                return Json("Unknown error processing your fare");
+            }
+            #endregion
         }
     }
 }

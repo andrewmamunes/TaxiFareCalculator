@@ -9,12 +9,7 @@ namespace TaxiFareCalculator.BusinessLogic
     {
         public static bool IsWeekday(this DateTime rideDate)
         {
-            bool result = true;
-            if ((rideDate.Day == (int)DayOfWeek.Saturday) || (rideDate.Day == (int)DayOfWeek.Sunday))
-            {
-                result = false;
-            }
-            return result;
+            return (rideDate.DayOfWeek == DayOfWeek.Saturday) || (rideDate.DayOfWeek == DayOfWeek.Sunday) ? false : true;
         }
     }
 }
