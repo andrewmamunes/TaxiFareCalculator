@@ -1,0 +1,55 @@
+﻿@{
+    ViewBag.Title = "Taxi Fare Calculator";
+}
+
+<script src="~/Scripts/Controllers/rideForm.controller.js"></script>
+<script src="~/Scripts/Services/ride.service.js"></script>
+<script src="~/Scripts/Directives/tfNonNegative.js"></script>
+<div ng-app="taxiFareCalculatorApp" ng-controller="taxiFareCalculatorController" ng-submit="calculateFare(rideForm.$valid)" ng-reset>
+    <form name="rideForm" novalidate>
+
+        <br /><br />
+        <div class="form-group">
+            <label>Ride Start Time</label><br />
+            <input type="time" name="startTime" class="form-control" ng-model="ride.startTime" ng-required="true">
+            <div ng-messages="rideForm.startTime.$error" style="color:red" role="alert">
+                <div ng-message="required"> Ride start time is required</div>
+                <div ng-message-default>Invalid start time</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Ride Date</label><br />
+            <input type="date" name="rideDate" class="form-control" ng-model="ride.rideDate" ng-required="true">
+            <div ng-messages="rideForm.rideDate.$error" style="color:red" role="alert">
+                <div ng-message="required"> Ride date is required</div>
+                <div ng-message-default>Invalid date</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Miles below 6 MPH</label><br />
+            <input type="number" name="milesBelowSixMph" ng-model="ride.milesBelowSixMph" tf-non-negative ng-required="true" min="0" />
+            <div ng-messages="rideForm.milesBelowSixMph.$error" style="color:red" role="alert">
+                <div ng-message="required">Miles below six mph is required</div>
+                <div ng-message="nonnegative"> Miles below six mph must be non-negative</div>
+                <div ng-message-default>This field has an input error</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Minutes above 6 MPH</label><br />
+            <input type="number" name="minutesAboveSixMph" ng-model="ride.minutesAboveSixMph" tf-non-negative ng-required="true" min="0"/>
+            <div ng-messages="rideForm.minutesAboveSixMph.$error" style="color:red" role="alert">
+                <div ng-message="required"> Minutes above six mph is required.</div>
+                <div ng-message="nonnegative"> Minutes above six mph must be non-negative </div>
+                <div ng-message-default>This field has an input error</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Taxi Fare Price</label><br />
+            <input type="text" name="farePrice" ng-model="ride.farePrice" disabled>
+        </div>
+        <input type="submit" ng-disabled="rideForm.$invalid" name="submitButton"/>
+        <button name = "resetButton" ng-click="resetForm()"> Reset </button>
+        <p ng-show="rideForm.$invalid" class="help-block" style="color:red">Please fill in required fields before submitting</p>
+
+    </form>
+</div>
