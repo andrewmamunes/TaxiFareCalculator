@@ -72,8 +72,8 @@ namespace TaxiFareCalculatorTest
             TaxiRide ride = new TaxiRide
             {
                 RideDate = new System.DateTime(2010, 10, 08),
-                MinutesAboveSixMph = 1.79769313486231E+308,
-                MilesBelowSixMph = 1.79769313486231E+308,
+                MinutesAboveSixMph = int.MaxValue,
+                MilesBelowSixMph = double.MaxValue,
                 StartTime = new System.DateTime(2010, 10, 08, 20, 0, 0),
             };
 

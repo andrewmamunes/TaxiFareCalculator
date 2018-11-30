@@ -4,7 +4,7 @@ namespace TaxiFareCalculator.Models
 {
     public class TaxiRide
     {
-        public double MinutesAboveSixMph { get; set; }
+        public int MinutesAboveSixMph { get; set; }
         public double MilesBelowSixMph { get; set; }
         public DateTime StartTime { get; set; }
         public DateTime RideDate { get; set; }
