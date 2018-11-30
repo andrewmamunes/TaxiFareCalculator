@@ -2,7 +2,6 @@
 using TaxiFareCalculator.BusinessLogic.Abstractions;
 using TaxiFareCalculator.Constants;
 using System;
-using System.Threading;
 
 namespace TaxiFareCalculator.BusinessLogic
 {
