@@ -5,10 +5,10 @@
         style: 'currency',
         currency: 'USD',
     });
-        $scope.resetForm = function () {
-            $scope.ride = {};
-            document.getElementsByName('rideForm')[0].reset();
-        }
+    $scope.resetForm = function () {
+        $scope.ride = {};
+        document.getElementsByName('rideForm')[0].reset();
+    }
     $scope.calculateFare = function (isValid) {
         if (isValid) {
             //promise
@@ -20,7 +20,7 @@
                     alert(error.data);
                 })
         } else {
-            $scope.errorMessage = 'The ride that you submitted is invalid.';
+            alert('The ride that you submitted is invalid.');
         }
     }
 });
