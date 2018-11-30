@@ -73,9 +73,5 @@ namespace TaxiFareCalculator.BusinessLogic
         private bool IsNight(TaxiRide ride) {
             return ((ride.StartTimeMinutes >= 1200d) || (ride.StartTimeMinutes <= 360d)) ? true : false;
         }
-        private bool IsWeekday(TaxiRide ride) {
-            return ((ride.StartTime.Day == (int)DayOfWeek.Saturday) || (ride.StartTime.Day == (int)DayOfWeek.Sunday));
-            
-        }
     }
 }
