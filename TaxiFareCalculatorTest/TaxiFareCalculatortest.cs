@@ -26,6 +26,26 @@ namespace TaxiFareCalculatorTest
             Assert.AreEqual(actual, expected);
         }
         [TestMethod]
+        public void CalculateFare_NoAddons()
+        {
+            // Arrange
+            TaxiRide ride = new TaxiRide
+            {
+                RideDate = new System.DateTime(2010, 10, 08),
+                MinutesAboveSixMph = 5,
+                MilesBelowSixMph = 2,
+                StartTime = new System.DateTime(2010, 10, 08, 8, 30, 0),
+            };
+
+            double expected = 8.75;
+
+            FareCalculator calculator = new FareCalculator();
+            // Act
+            double actual = calculator.CalculateFare(ride);
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
         public void CalculateFare_NoAddons_PeakTimeAndSaturday()
         {
             // Arrange
@@ -65,26 +85,7 @@ namespace TaxiFareCalculatorTest
             // Assert
             Assert.AreEqual(actual, expected);
         }
-        [TestMethod]
-        public void CalculateFare_NoAddons()
-        {
-            // Arrange
-            TaxiRide ride = new TaxiRide
-            {
-                RideDate = new System.DateTime(2010, 10, 08),
-                MinutesAboveSixMph = 0,
-                MilesBelowSixMph = 2,
-                StartTime = new System.DateTime(2010, 10, 08, 8, 30, 0),
-            };
-
-            double expected = 7.00;
-
-            FareCalculator calculator = new FareCalculator();
-            // Act
-            double actual = calculator.CalculateFare(ride);
-            // Assert
-            Assert.AreEqual(expected, actual);
-        }
+        
         [TestMethod]
         public void CalculateFare_ShouldBePeakWeekday()
         {
@@ -92,12 +93,12 @@ namespace TaxiFareCalculatorTest
             TaxiRide ride = new TaxiRide
             {
                 RideDate = new System.DateTime(2010, 10, 08),
-                MinutesAboveSixMph = 0,
+                MinutesAboveSixMph = 5,
                 MilesBelowSixMph = 2,
                 StartTime = new System.DateTime(2010, 10, 08, 16, 0, 0),
             };
 
-            double expected = 8.00;
+            double expected = 9.75;
 
             FareCalculator calculator = new FareCalculator();
             // Act
@@ -112,12 +113,12 @@ namespace TaxiFareCalculatorTest
             TaxiRide ride = new TaxiRide
             {
                 RideDate = new System.DateTime(2010, 10, 08),
-                MinutesAboveSixMph = 0,
+                MinutesAboveSixMph = 5,
                 MilesBelowSixMph = 2,
                 StartTime = new System.DateTime(2010, 10, 08, 6, 0, 0),
             };
 
-            double expected = 7.50;
+            double expected = 9.25;
 
             FareCalculator calculator = new FareCalculator();
             // Act
@@ -133,13 +134,13 @@ namespace TaxiFareCalculatorTest
             {
                 // Friday
                 RideDate = new System.DateTime(2010, 10, 08),
-                MinutesAboveSixMph = 0,
+                MinutesAboveSixMph = 5,
                 MilesBelowSixMph = 2,
                 // 8 PM
                 StartTime = new System.DateTime(2010, 10, 08, 20, 0, 0),
             };
 
-            double expected = 8.50;
+            double expected = 10.25;
 
             FareCalculator calculator = new FareCalculator();
             // Act
@@ -148,18 +149,18 @@ namespace TaxiFareCalculatorTest
             Assert.AreEqual(expected, actual);
         }
         [TestMethod]
-        public void CalculateFare_OvernightAddon_MaxFringePeakTest()
+        public void CalculateFare_OvernightAddon_MaxFringePeak()
         {
             // Arrange
             TaxiRide ride = new TaxiRide
             {
                 RideDate = new System.DateTime(2010, 10, 08),
-                MinutesAboveSixMph = 0,
+                MinutesAboveSixMph = 5,
                 MilesBelowSixMph = 2,
                 StartTime = new System.DateTime(2010, 10, 08, 20, 00, 01),
             };
 
-            double expected = 7.50;
+            double expected = 9.25;
 
             FareCalculator calculator = new FareCalculator();
             // Act
@@ -168,18 +169,18 @@ namespace TaxiFareCalculatorTest
             Assert.AreEqual(expected, actual);
         }
         [TestMethod]
-        public void CalculateFare_NoAddons_MinFringePeakTest()
+        public void CalculateFare_NoAddons_MinFringePeak()
         {
             // Arrange
             TaxiRide ride = new TaxiRide
             {
                 RideDate = new System.DateTime(2010, 10, 08),
-                MinutesAboveSixMph = 1,
+                MinutesAboveSixMph = 5,
                 MilesBelowSixMph = 2,
                 StartTime = new System.DateTime(2010, 10, 08, 15, 59, 59),
             };
 
-            double expected = 7.35;
+            double expected = 8.75;
 
             FareCalculator calculator = new FareCalculator();
             // Act
@@ -188,18 +189,18 @@ namespace TaxiFareCalculatorTest
             Assert.AreEqual(expected, actual);
         }
         [TestMethod]
-        public void CalculateFare_NoAddons_MinFringeOvernightTest()
+        public void CalculateFare_NoAddons_MinFringeOvernight()
         {
             // Arrange
             TaxiRide ride = new TaxiRide
             {
                 RideDate = new System.DateTime(2010, 10, 08),
-                MinutesAboveSixMph = 1,
+                MinutesAboveSixMph = 5,
                 MilesBelowSixMph = 2,
                 StartTime = new System.DateTime(2010, 10, 08, 6, 00, 01),
             };
 
-            double expected = 7.35;
+            double expected = 8.75;
 
             FareCalculator calculator = new FareCalculator();
             // Act
@@ -207,5 +208,26 @@ namespace TaxiFareCalculatorTest
             // Assert
             Assert.AreEqual(expected, actual);
         }
+        [TestMethod]
+        public void CalculateFare_NoAddons_PartialMilesBelowSixMph()
+        {
+            // Arrange
+            TaxiRide ride = new TaxiRide
+            {
+                RideDate = new System.DateTime(2010, 10, 08),
+                MinutesAboveSixMph = 5,
+                MilesBelowSixMph = .4,
+                StartTime = new System.DateTime(2010, 10, 08, 6, 00, 01),
+            };
+
+            double expected = 5.95;
+
+            FareCalculator calculator = new FareCalculator();
+            // Act
+            double actual = calculator.CalculateFare(ride);
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
     }
 }
